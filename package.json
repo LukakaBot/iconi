@@ -8,21 +8,29 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "prepare": "tsx scripts/prepare.ts"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.367",
+    "alova": "^3.3.4",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.0",
+    "@iconify/types": "^2.0.0",
     "@iconify/vue": "^5.0.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.2.0",
     "@unocss/eslint-plugin": "^66.4.1",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.32.0",
     "eslint-plugin-format": "^1.0.1",
+    "fs-extra": "^11.3.1",
     "naive-ui": "^2.42.0",
+    "tsx": "^4.20.3",
     "typescript": "~5.8.3",
     "unocss": "^66.4.1",
     "unplugin-auto-import": "^20.0.0",
