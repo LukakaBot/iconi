@@ -13,7 +13,8 @@
       "src/types"
     ],
     "types": [
-      "naive-ui/volar"
+      "naive-ui/volar",
+      "vite-plugin-svg-icons/client"
     ],
     /* Linting */
     "strict": true,

@@ -4,9 +4,10 @@ import { dateZhCN, zhCN } from 'naive-ui'
 
 <template>
   <NConfigProvider :locale="zhCN" :date-locale="dateZhCN">
-    <BaseProvider>
+    <AppProvider>
+      <AppHeader />
       <RouterView />
-    </BaseProvider>
+    </AppProvider>
   </NConfigProvider>
 </template>
 
