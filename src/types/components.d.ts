@@ -8,11 +8,14 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppContent: typeof import('./../components/layout/AppContent/index.vue')['default']
+    AppFooter: typeof import('./../components/layout/AppFooter/index.vue')['default']
     AppHeader: typeof import('./../components/layout/AppHeader/index.vue')['default']
     AppIcon: typeof import('./../components/base/AppIcon/index.vue')['default']
     AppProvider: typeof import('./../components/base/AppProvider/index.vue')['default']
     BaseIcon: typeof import('./../components/base/BaseIcon/index.vue')['default']
     BaseProvider: typeof import('./../components/base/BaseProvider/index.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']

@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="container-wrapper">
+  <div class="min-h-screen">
     我是首页
   </div>
 </template>
