@@ -1,5 +1,5 @@
 import type { IconifyMetaDataCollection } from '@iconify/json'
-import type { IconifyJSON } from '@iconify/types'
+import type { IconifyJSON } from 'iconify-icon'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
@@ -32,7 +32,7 @@ async function prepare() {
     .map(([id, value]) => ({ ...value, id }))
     .filter(value => value.hidden !== true)
 
-  const jsonCollections = await Promise.all(
+  const JSONCollections = await Promise.all(
     collections.map(async (collection) => {
       const json = await fs.readJSON(path.join(iconifyDir, 'json', `${collection.id}.json`)) as unknown as IconifyJSON
       const icons = Object.keys(json.icons)
@@ -74,7 +74,7 @@ async function prepare() {
     }),
   )
 
-  await fs.writeJSON(path.join(publicDir, 'collections-meta.json'), jsonCollections)
+  await fs.writeJSON(path.join(publicDir, 'collections-meta.json'), JSONCollections)
   await fs.writeJSON(path.join(dataDir, 'collections-info.json'), collections)
 }
 
