@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@iconify/json": "^2.2.367",
+    "@iconify/types": "^2.0.0",
     "alova": "^3.3.4",
-    "iconify-icon": "^3.0.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },

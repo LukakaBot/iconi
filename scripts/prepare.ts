@@ -1,5 +1,5 @@
 import type { IconifyMetaDataCollection } from '@iconify/json'
-import type { IconifyJSON } from 'iconify-icon'
+import type { IconifyJSON } from '@iconify/types'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import fs from 'fs-extra'
@@ -32,7 +32,9 @@ async function prepare() {
     .map(([id, value]) => ({ ...value, id }))
     .filter(value => value.hidden !== true)
 
-  const JSONCollections = await Promise.all(
+  const collectionMetas: CollectionInfo[] = []
+
+  const collectionInfos = await Promise.all(
     collections.map(async (collection) => {
       const json = await fs.readJSON(path.join(iconifyDir, 'json', `${collection.id}.json`)) as unknown as IconifyJSON
       const icons = Object.keys(json.icons)
@@ -44,13 +46,15 @@ async function prepare() {
         height: json.height,
         icons: extractValues(sampleIcons, json.icons),
       }
-      const meta = { ...collection, icons, categories, sampleIcons, prepacked }
+      const meta = { ...collection, icons, categories }
 
       const rawFilePath = path.join(collectionsDir, `${collection.id}.json`)
       const metaFilePath = path.join(collectionsDir, `${collection.id}-meta.json`)
 
       await fs.writeJSON(rawFilePath, json)
       await fs.writeJSON(metaFilePath, meta)
+
+      collectionMetas.push(meta)
 
       if (collection.id === 'logos') {
         sampleIcons = [
@@ -70,12 +74,22 @@ async function prepare() {
         sampleIcons = icons.slice(0, 6)
       }
 
-      return meta
+      return {
+        ...collection,
+        icons,
+        categories,
+        sampleIcons,
+        prepacked,
+      }
     }),
   )
 
-  await fs.writeJSON(path.join(publicDir, 'collections-meta.json'), JSONCollections)
-  await fs.writeJSON(path.join(dataDir, 'collections-info.json'), collections)
+  await fs.writeJSON(path.join(publicDir, 'collections-meta.json'), collectionMetas)
+  await fs.writeJSON(path.join(dataDir, 'collections-info.json'), collectionInfos)
 }
 
-prepare()
+prepare().then(() => {
+  console.log('Prepare script finished successfully')
+}).catch((error) => {
+  console.error('Prepare script failed:', error)
+})
