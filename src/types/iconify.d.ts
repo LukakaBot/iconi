@@ -18,4 +18,10 @@ declare global {
     type: PresentType
     collections: CollectionInfo[]
   }
+
+  interface CollectionMeta extends CollectionInfo {
+    icons: string[]
+    categories?: Record<string, string[]>
+    variants?: Record<string, string[]>
+  }
 }
