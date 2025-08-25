@@ -66,9 +66,13 @@ onMounted(() => {
         </div>
         <div class="grid-cols-[repeat(auto-fill,_minmax(260px,_1fr))]" grid gap2 py-2>
           <RouterLink
-            v-for="collection in category.collections" :key="collection.id" grid="~ cols-[1fr_90px] gap2"
-            border="1 solid gray-300" color-base hover="text-[var(--primary-color)] border-[var(--primary-color)]"
-            translate-all translate-z-0 cursor-pointer p3 :to="`/collection/${collection.id}`"
+            v-for="collection in category.collections"
+            :key="collection.id"
+            :to="`/collection/${collection.id}`"
+            grid="~ cols-[1fr_90px] gap2"
+            border="1 solid gray-300"
+            hover="text-[var(--primary-color)] border-[var(--primary-color)]"
+            translate-z-0 cursor-pointer p3 color-base transition-all duration-300
           >
             <div>
               <p text-lg leading-5>
